@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project 02 - BMI Calculation</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f8;
+        }
+
+        .container {
+            width: 350px;
+            margin: 100px auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        p {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>BMI Calculation</h1>
+
+        <form>
+            <p>
+                <label for="height">Height (cm)</label>
+                <input type="text" id="height" placeholder="Enter height">
+            </p>
+
+            <p>
+                <label for="weight">Weight (kg)</label>
+                <input type="text" id="weight" placeholder="Enter weight">
+            </p>
+            <button type="submit">Calculate</button>
+            <div id="results"></div>
+        </form>
+    </div>
+
+    <script>
+        const form = document.querySelector('form')
+
+        form.addEventListener('submit', function (e) {
+            e.preventDefault()
+
+            const height = parseInt(document.querySelector('#height').value)
+            const weight = parseInt(document.querySelector('#weight').value)
+            const results = document.querySelector('#results')
+
+            if (height == '' || height < 0 || isNaN(height)) {
+                results.innerHTMl = `Please Give a valid height ${height}`
+            } else if (weight == '' || weight < 0 || isNaN(weight)) {
+                results.innerHTMl = `Please Give a valid height ${weight}`
+            } else {
+                const bmi = (weight / ((height * height) / 10000)).toFixed(2)
+                results.innerHTML = `<h3>Your BMI is : ${bmi}</h3>`
+            }
+        })
+    </script>
+</body>
+
+</html>
